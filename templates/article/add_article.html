@@ -1,0 +1,126 @@
+{% extends '../base/index.html' %}
+{% block head %}
+    <!-- simditor引入文件 -->
+	<link rel="stylesheet" href="/static/common/simditor/styles/simditor.css">
+    <script src="/static/common/js/jquery-1.10.2.min.js"></script>
+	<script src="/static/common/simditor/scripts/module.min.js"></script>
+	<script src="/static/common/simditor/scripts/hotkeys.min.js"></script>
+	<script src="/static/common/simditor/scripts/uploader.min.js"></script>
+	<script src="/static/common/simditor/scripts/simditor.min.js"></script>
+
+    <!-- alert插件的样式文件 -->
+    <link href="/static/common/sweetalert/sweetalert.css" rel="stylesheet">
+
+{% end %}
+
+
+
+
+
+
+
+
+{% block body %}
+<!-- page heading start-->
+        <div>
+            <h3>
+                文章上传 <small>Subtext for header</small>
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Extra Pages</a>
+                </li>
+                <li class="active">文章上传 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+    <div class="wrapper">
+    	<div class="content-box">
+            <div class="container">
+                {% module xsrf_form_html() %}
+                <form action="" class="form">
+                    <!-- 标题栏 -->
+                    {% module xsrf_form_html() %}
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon" >标题</span>
+                            <input type="text" class="form-control" placeholder="标题" id='title-input' value="" data-article-id="">
+                            <span class="input-group-addon btn btn-danger" id='submit-article-btn'>提交文章</span>
+                        </div>
+                    </div>
+                    <!-- 标题栏结束 -->
+
+                    <!-- 分类栏 -->
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">分类</span>
+                            <select name="" id="category-select" class="form-control">
+                                {% for category in categorys %}
+								    <option value="{{category.id}}" selected="selected">{{ category.name }}</option>
+							    {% end %}
+                            </select>
+                        </div>
+                    </div>
+                    <!-- 分类栏结束 -->
+
+                    <!-- 摘要栏 -->
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">摘要</span>
+                            <input type="text" class="form-control" placeholder="摘要" id="desc-input" value="">
+                        </div>
+                    </div>
+                    <!-- 摘要栏结束 -->
+
+                    <!-- 标签栏 -->
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">标签</span>
+                            <div class="form-control" id='tag-box'>
+                                {% for tag in tags %}
+                                    <label for="" class="checkbox-inline">
+                                        <input type="checkbox" value="{{ tag.id }}" class="tag-checkbox" >
+                                           {{ tag.name }}
+                                    </label>
+                                {% end %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 标签栏结束 -->
+
+                    <!-- simditor编辑器的输入栏 -->
+                    <div class="form-group">
+                        <textarea id="simditor" placeholder="正文..."></textarea>
+                        <!--<textarea name="content" style="width: 1140px;height: 400px;">123</textarea>-->
+                    </div>
+                    <!-- simditor编辑器的输入栏结束 -->
+
+
+
+                     <!-- 上传图片 -->
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">图片</span>
+                            <input type="text" class="form-control" placeholder="缩略图地址" id='thumbnail-input' value="">
+                        </div>
+                    </div>
+
+                    <!-- 上传图片栏 -->
+
+
+                </form>
+            </div>
+	    </div>
+    </div>
+{% end %}
+
+
+{% block end %}
+        <!-- alert插件的js文件 -->
+        <script src="/static/common/sweetalert/sweetalert.min.js"></script>
+        <script src="/static/js/article/add_article.js"></script>
+
+{% end %}

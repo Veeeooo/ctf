@@ -1,0 +1,109 @@
+{% extends '../base/index.html' %}
+
+{% block head %}
+
+    <title>个人中心</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/auth/main.css" rel="stylesheet">
+
+    <link href="/static/css/auth/css_002.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/auth/css.css" rel="stylesheet" type="text/css">
+
+{% end %}
+
+
+
+
+{% block body %}
+    <div class="container">
+    	<div class="col-lg-12 ">
+
+    		<!-- ===== vCard Navigation ===== -->
+    		<div class="row w">
+    			<div class="col-md-4">
+    				<img class="img-responsive" src="/static/img/useravatars/{{ current_user.avatar }}" alt="">
+					<ul class="nav nav-tabs nav-stacked" id="myTab">
+					  <li class="active"><a href="#about">About</a></li>
+					  <li class=""><a href="#profile">Profile</a></li>
+					  <li class=""><a href="#portfolio">Works</a></li>
+
+					</ul>
+				</div><!-- col-md-4 -->
+
+    		<!-- ===== vCard Content ===== -->
+    			<div class="col-md-8">
+	    			<div class="tab-content">
+
+	    			  <!-- ===== First Tab ===== -->
+					  <div class="tab-pane active" id="about">
+					  	<h3>{{ current_user.name }}</h3>
+					  	<h5>Auth</h5>
+					  	<hr>
+                          <h5>signature</h5>
+					  	<p>&nbsp;&nbsp;{{ current_user.signature }}</p>
+					  	<p class="pull-right red"><i class="icon-heart"></i></p>
+					  </div><!-- tab about -->
+
+	    			  <!-- ===== Second Tab ===== -->
+					  <div class="tab-pane" id="profile">
+					  	<h4><i class="icon-briefcase"></i> Personal Information</h4>
+					  	<p class="sm">
+                            <grey>Name.</grey> | {{ current_user.name }}<br>
+					  		<grey>Email.</grey> | {{ user.email }}<br>
+					  		<grey>QQ.</grey> | {{ user.qq }}<br>
+					  		<grey>Mobile.</grey> | {{ user.mobile }}<br>
+					  		<grey>Last LoginTime.</grey> | {{ user.last_login }}<br>
+					  	</p>
+
+						  <h4><i class="icon-file-text-alt"></i> Education</h4>
+					  	<p class="sm">
+					  		<grey>Graduated School.</grey> | Greenville University.<br>
+					  	</p>
+
+						  <h4><i class="icon-trophy"></i> Competition situation</h4>
+					  	<p class="sm">
+					  		<grey>Rank.</grey> | Black Tie Site.<br>
+					  		<grey>Score.</grey> | 2012.<br>
+					  	</p>
+					  </div><!-- Tab Profile -->
+
+	    			  <!-- ===== Third Tab ===== -->
+					  <div class="tab-pane" id="portfolio">
+                          <h4><i class="icon-file-text-alt"></i> Article</h4>
+						    <ul>
+                                {% for a in article %}
+                                <li style="line-height: 30px;"><a href="/article/article?id={{ a.id }}">{{ a.title  }}</a>&nbsp;&nbsp;&nbsp;{{ a.createtime }}</li>
+                                {% end %}
+                            </ul>
+					  </div><!-- /Tab Portfolio -->
+
+
+
+					</div><!-- Tab Content -->
+    			</div><!-- col-md-8 -->
+    		</div><!-- row w -->
+    	</div><!-- col-lg-6 -->
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+
+{% end %}
+
+{% block end %}
+
+	<script>
+	$('#myTab a').click(function (e) {
+	  e.preventDefault();
+	  $(this).tab('show')
+	});
+	</script>
+{% end %}

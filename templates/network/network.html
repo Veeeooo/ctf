@@ -1,0 +1,52 @@
+{% extends '../base/index.html' %}
+
+{% block body %}
+<div class="maincontent row">
+            <!--我是主要内容 start-->
+            <div class="col-sm-12">
+                <div class="jumbotron">
+                    <h1>这是一个CTF娱乐园</h1>
+                    <p>只要你脑洞够，就可以来挑战</p>
+                </div>
+            <div class="wrapper">
+                <div class="row blog">
+            <!--  文章列表栏  -->
+            <!--<div class="col-md-8">-->
+                <!--  文章列表  -->
+                {% for a in articles %}
+                    <div class="panel">
+                        <div class="panel-body">
+                            <h1 class="text-center mtop35"><a href="/article/article?id={{ a.id }}">{{ a.title  }}</a></h1>
+                            <p class="text-center auth-row">
+                                作者: <a href="#">{{ a.user.name }}</a>|日期:{{ a.createtime }}|<a href="#">  阅读(39)</a>
+                            </p>
+                            <p>摘要:  {{ a.desc }}</p><br/>
+                            <a href="/article/article?id={{ a.id }}" class="more">阅读全文</a>
+                        </div>
+                    </div>
+                {% end %}
+                <!--  文章列表结束  -->
+
+                <!--  分页  -->
+                <div class="text-center">
+                    <ul class="pagination blog-pagination">
+                        <li><a href="#">PREV</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">NEXT</a></li>
+                    </ul>
+                </div>
+                <!--  分页结束  -->
+            </div>
+            <!--  文章列表栏结束  -->
+
+            <!--  右边栏  -->
+
+            </div>
+        </div>
+    </div>
+<!--</div>-->
+{% end %}

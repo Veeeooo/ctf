@@ -1,0 +1,137 @@
+{% extends '../base/index.html' %}
+
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/auth/base.css" type="text/css" />
+    <link rel="stylesheet" href="/static/css/auth/common-less(1).css" type="text/css" />
+    <link rel="stylesheet" href="/static/css/auth/moco.min.css" type="text/css" />
+    <link rel="stylesheet" href="/static/css/auth/common-less.css" type="text/css" />
+    <link rel="stylesheet" href="/static/css/auth/profile-less.css" type="text/css" />
+{% end %}
+
+
+{% block body %}
+
+
+<div id="main" >
+
+    <div class="page-settings">
+        <div class="top">
+            <div class="w960 mauto top_title">
+                <p>个人设置</p>
+            </div>
+        </div>
+        <div class="setting pb10" style="height: 900px;">
+            <div class="nav-tabs pa">
+                <h class="baseinfo fl active">基本信息</h>
+                <div class="cb"></div>
+            </div>
+            <div class="contentBox" >
+                <div class="formBox">
+                    <div id="setting-profile" class="setting-wrap setting-profile">
+
+                        <div class="wlfg-wrap clearfix ">
+                            <label class="label-name" for="job">头像：</label>
+                            <div class="rlf-group">
+                                <img class="fl avator-img" id="js-portrait" src="/static/img/useravatars/{{ current_user.avatar }}" width="180" height="180">
+                                <div class="fl ml20 pr">
+
+                                    <div id="avator-btns" class="avator-btn-inner" style="margin-top: 30px;">
+
+                                        <div class="avator-btn-wrap">
+                                            <form target="uploadtarget" action="/account/avatar" method="post" enctype="multipart/form-data">
+                                                {% module xsrf_form_html() %}
+                                                <input type="file" title="上传头像" name="avatar" id="upload avatar" style="margin-left: 200px; margin-top: -100px;">
+                                                <input type="submit" value="上传头像" name="fileField" style="margin-left: 200px;margin-top: 30px;">
+                                            </form>
+                                            <iframe src="about:blank" id="uploadtarget" name="uploadtarget" frameborder="0" style="display:none;"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cb"></div>
+                                <p class="rlf-tip-wrap errorHint color-red" ></p>
+                            </div>
+                        </div>
+
+                        <form id="profile" method="post" action="/edit_detail">
+                            {% module xsrf_form_html() %}
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >昵称：</label>
+                                <div class="rlf-group">
+                                    <input type="text" name="nickname" id="nick"  autocomplete="off"  data-validate="require-nick"  class="moco-form-control" value={{ current.name }} placeholder="请输入昵称."/>
+                                    <p class="rlf-tip-wrap errorHint color-red" ></p>
+                                </div>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >QQ：</label>
+                                <div class="rlf-group">
+                                    <input type="text" name="qq" id="nick"  autocomplete="off"  data-validate="require-nick"  class="moco-form-control" value={{ current.qq }} placeholder="请输入QQ."/>
+                                    <p class="rlf-tip-wrap errorHint color-red" ></p>
+                                </div>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >Email：</label>
+                                <div class="rlf-group">
+                                    <input type="text" name="email" id="nick"  autocomplete="off"  data-validate="require-nick"  class="moco-form-control" value={{ current.email }} placeholder="请输入Email."/>
+                                    <p class="rlf-tip-wrap errorHint color-red" ></p>
+                                </div>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >mobile：</label>
+                                <div class="rlf-group">
+                                    <input type="text" name="mobile" id="nick"  autocomplete="off"  data-validate="require-nick"  class="moco-form-control" value={{ current.mobile }} placeholder="请输入手机号."/>
+                                    <p class="rlf-tip-wrap errorHint color-red" ></p>
+                                </div>
+                            </div>
+
+{#                            <div class="wlfg-wrap clearfix">#}
+{#                                <label class="label-name" for="nick" >School：</label>#}
+{#                                <div class="rlf-group">#}
+{#                                    <input type="text" name="school" id="nick"  autocomplete="off"  data-validate="require-nick"  class="moco-form-control" value="" placeholder="请输入学校."/>#}
+{#                                    <p class="rlf-tip-wrap errorHint color-red" ></p>#}
+{#                                </div>#}
+{#                            </div>#}
+
+
+
+
+{#                            <div class="wlfg-wrap clearfix">#}
+{#                                <label class="label-name h16 lh16" >性别：</label>#}
+{#                                <div class="rlf-group rlf-radio-group">#}
+{#                                    <label  class="lh16"><input type="radio" hidefocus="true" value="0"   name="sex">保密</label>#}
+{#                                    <label  class="lh16"><input type="radio" hidefocus="true" value="1"  name="sex">男</label>#}
+{#                                    <label  class="lh16"><input type="radio" hidefocus="true" value="2" checked="checked" name="sex">女</label>#}
+{#                                    <p class="rlf-tip-wrap errorHint color-red"></p>#}
+{#                                </div>#}
+{#                            </div>#}
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="aboutme">个性签名：</label>
+                                <div class="rlf-group">
+                                    <div class="pr">
+                                        <textarea name="aboutme"  id="aboutme"  rows="5" class="noresize js-sign moco-form-control"></textarea>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="profile-submit"></label>
+                                <div class="rlf-group">
+                                    <input type="submit" value="保存">
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% end %}

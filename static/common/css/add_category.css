@@ -1,0 +1,11 @@
+#setting { font-size: 16px; font-weight: bold; color: #fff; background-color: #f00; margin: 0; padding: 0; border: none; outline: none; width: 200px; height: 40px; text-align: center; cursor: pointer }
+#box { width: 300px; height: 300px; margin: 20px; border: solid 4px #000 }
+#settin-main { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 999; background-color: rgba(0,0,0,.5); display: none; }
+#settin-main2 { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 999; background-color: rgba(0,0,0,.5); display: none; }
+#setting-box { background-color: #fff; width: 400px; height: 220px; padding-top: 40px; position: absolute; top: 50%; left: 50%; margin-left: -210px; margin-top: -140px; border: solid 20px #bfbfbf }
+#setting-box dl { height: 42px; clear: both; margin: 0 40px 10px }
+#setting-box dt { font-size: 18px; line-height: 42px; width: 146px; height: 42px; float: left }
+#setting-box dd { width: 156px; height: 42px; float: left }
+#setting-box span { line-height: 40px; text-align: center; display: block; float: left; width: 40px; height: 40px; margin-right: 10px; background-color: #eee;  cursor: pointer }
+.settin-btn-area { width: 200px; margin: 0 auto; padding-top: 10px }
+.setting-btn { color: #fff; background-color: #001F3F; width: 60px; height: 30px; float: left; cursor: pointer; margin: 0 20px; padding: 0; border: 0; outline: none }

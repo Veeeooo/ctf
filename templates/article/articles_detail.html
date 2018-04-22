@@ -1,0 +1,61 @@
+{% extends '../base/index.html' %}
+{% block head %}
+        <!-- page heading start-->
+
+        <!-- page heading end-->
+{% end %}
+
+{% block body %}
+        <div>
+            <h3>
+                文章 <small>详情页</small>
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Extra Pages</a>
+                </li>
+                <li class="active">详情页</li>
+            </ul>
+        </div>
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row blog">
+                <div class="col-md-1"></div>
+                <!-- 文章详情栏 -->
+                <div class="col-md-10">
+                    <div class="blog">
+                        <div class="single-blog">
+                            <!-- 文章栏 -->
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <h1 class="text-center mtop35"><a href="#">{{ article.title }}</a></h1>
+                                    <p class="text-center auth-row">
+                                       作者: <a href="javascript:;">{{ article.user.name  }}</a>   |   日期: {{ article.createtime }}  | </a><a href="javascript:;"> | 阅读({{ article.readnum }})</a>
+                                    </p>
+                                    <p>
+                                        {% raw article.content %}
+
+                                    </p>
+                                    <div class="blog-tags">
+                                        标签
+                                        {% for tag in article.tags %}
+                                            <a href="javascript:;">{{ tag.name }}</a>
+                                        {% end %}
+                                        <span class="pull-right">分类:<a href="javascript:;" >{{ article.category.name }}</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 文章栏结束 -->
+                    </div>
+                </div>
+                <!-- 文章详情栏结束 -->
+
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+
+        <!--body wrapper end-->
+{% end %}

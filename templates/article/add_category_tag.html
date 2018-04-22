@@ -1,0 +1,133 @@
+{% extends '../base/index.html' %}
+
+{% block head %}
+<link href="/static/common/sweetalert/sweetalert.css" rel="stylesheet">
+<link rel="stylesheet" href="/static/common/css/permission.css">
+<link rel="stylesheet" href="/static/common/css/add_category.css">
+<script src="/static/common/js/jquery-1.10.2.min.js"></script>
+{% end %}
+
+
+{% block body %}
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                分类/标签管理 <small>Subtext for header</small>
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Extra Pages</a>
+                </li>
+                <li class="active">分类/标签管理 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+    <div>
+        <button class="btn" id="btn1">添加标签</button>
+        <button class="btn" id="btn2">添加分类</button>
+    </div>
+
+<div id="settin-main">
+        <div id="setting-box">
+                <span id="ban1" style="float: right; margin-top: -30px; margin-right: 5px; background: white;">
+                    <i class="fa fa-ban"></i>
+                </span>
+            <form action="" method="post">
+                {% module xsrf_form_html() %}
+                <dl>
+                    <dt>请输入标签名字：</dt>
+                    <dd><input type="text" style="width: 250px; height: 30px;" id="tag_name" name="tag_name"></dd>
+                </dl>
+                <button class="btn btn-lg btn-login btn-block" id="submit_tag" style="margin-left: -40px; width: 50px; margin-top: 35px;">
+                    <i class="fa fa-check"></i>
+                </button>
+            </form>
+        </div>
+</div>
+<div id="settin-main2">
+	<div id="setting-box">
+        <span id="ban2" style="float: right; margin-top: -30px; margin-right: 5px; background: white;">
+            <i class="fa fa-ban"></i>
+        </span>
+        <form action="/article/add_category_tag" method="post">
+            {% module xsrf_form_html() %}
+            <dl>
+                <dt>请输入分类名字：</dt>
+                <dd><input type="text" style="width: 250px; height: 30px;" id="content" name="content"></dd>
+            </dl>
+            <button class="btn btn-lg btn-login btn-block" style="margin-left: -40px; width: 50px; margin-top: 35px;" name="category_name" id="submit_category" >
+                <i class="fa fa-check" id="submit_category"></i>
+            </button>
+        </form>
+	</div>
+</div>
+
+    <header class="panel-heading" id="head1">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <section class="panel" >
+                        <div class="panel-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>分类名</th>
+                                        <th>编辑</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for category in categorys %}
+                                        <tr>
+                                            <td>{{category.id}}</td>
+                                            <td>{{category.name}}</td>
+                                            <td>
+                                                <a href="/article/delete_category?id={{ category.id }}" >删除</a>
+                                            </td>
+                                        </tr>
+                                    {% end %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-sm-12">
+                        <section class="panel" >
+                            <div class="panel-body">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>标签名</th>
+                                            <th>编辑</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for tag in tags %}
+                                            <tr>
+                                                <td>{{tag.id}}</td>
+                                                <td>{{tag.name}}</td>
+                                                <td>
+                                                    <a href="/article/delete_tag?id={{ tag.id }}" >删除</a>
+                                                </td>
+                                            </tr>
+                                        {% end %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+    </header>
+{% end %}
+{% block end %}
+<script src="/static/js/article/add_category.js"></script>
+<script src="/static/js/article/category.js"></script>
+<script src="/static/common/sweetalert/sweetalert.min.js"></script>
+{% end %}
