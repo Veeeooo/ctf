@@ -1,0 +1,92 @@
+{% extends 'ctf_index.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/auth/base.css" type="text/css" />
+    <link rel="stylesheet" href="/static/css/auth/common-less(1).css" type="text/css" />
+    <link rel="stylesheet" href="/static/css/auth/moco.min.css" type="text/css" />
+    <link rel="stylesheet" href="/static/css/auth/common-less.css" type="text/css" />
+    <link rel="stylesheet" href="/static/css/auth/profile-less.css" type="text/css" />
+{% end %}
+
+
+{% block part %}{% end %}
+{% block body %}
+
+<div id="main" style="margin-top: 50px;">
+
+    <div class="page-settings" >
+        <div class="top">
+            <div class="w960 mauto top_title">
+                <p>发布题目</p>
+            </div>
+        </div>
+        <div class="setting pb10" style="height: 500px;">
+            <div class="nav-tabs pa">
+                <h class="baseinfo fl active">填写题目</h>
+                <div class="cb"></div>
+            </div>
+            <div class="contentBox" >
+                <div class="formBox">
+                    <div id="setting-profile" class="setting-wrap setting-profile">
+                        <form id="profile" method="post" action="/ctf/manage?id={{ id }}">
+                            {% module xsrf_form_html() %}
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >标题：</label>
+                                <div class="rlf-group">
+                                    <input type="text" name="name" id="nick"  autocomplete="off"  data-validate="require-nick"  class="moco-form-control" value={{ title.name }} placeholder="请输入标题."/>
+                                    <p class="rlf-tip-wrap errorHint color-red" ></p>
+                                </div>
+                            </div>
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="aboutme">题目：</label>
+                                <div class="rlf-group">
+                                    <div class="pr">
+                                        <textarea name="title"  id="aboutme"  rows="5" class="noresize js-sign moco-form-control"></textarea>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >Flag：</label>
+                                <div class="rlf-group">
+                                    <input type="text" name="flag" id="nick"  autocomplete="off"  data-validate="require-nick"  class="moco-form-control" value={{ title.flag.flag }} placeholder="请输入flag."/>
+                                    <p class="rlf-tip-wrap errorHint color-red" ></p>
+                                </div>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="nick" >分值：</label>
+                                <div class="rlf-group">
+                                    <input type="text" name="scoure" id="nick"  autocomplete="off"  data-validate="require-nick"  class="moco-form-control" value={{ title.source }} placeholder="请输入分值."/>
+                                    <p class="rlf-tip-wrap errorHint color-red" ></p>
+                                </div>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix" style="margin-left: 27px;">
+                                <b>分类:</b>&nbsp;  <select name="categoryid" id="categoryid" style="margin-left: 10px;">
+                                   {% for category in categorys %}
+                                    <option value={{ category.id }}>{{ category.name }}</option>
+                                   {% end %}
+                               </select>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="profile-submit"></label>
+                                <div class="rlf-group" style="margin-top: 20px;">
+                                    <input class="btn btn-info" type="submit" value="上传">
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% end %}
+{% block end %}
+{% end %}

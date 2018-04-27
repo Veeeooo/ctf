@@ -1,0 +1,29 @@
+{% extends 'ctf_index.html' %}
+{% block body %}
+<div  class="container" style="margin:0 auto; margin-top: 150px;">
+<table class="table table-striped">
+  <thead>
+  <tr>
+  <td style="text-align: center"><b>Team id</b></td>
+  <td style="text-align: center"><b>Team</b></td>
+  <td style="text-align: center"><b>Source</b></td>
+    </tr>
+  </thead>
+    <tbody>
+    {% for solver in solvers %}
+  <tr>
+    <td style="text-align: center">{{ solver.id }}</td>
+    <td style="text-align: center">{{ solver.name }}</td>
+    <td style="text-align: center">
+        {% if solver.challenge == [] %}
+            {{ default }}
+        {% else %}
+        {{ get_total(solver.challenge) }}
+        {% end %}
+    </td>
+  </tr>
+    {% end %}
+  </tbody>
+</table>
+</div>
+{% end %}

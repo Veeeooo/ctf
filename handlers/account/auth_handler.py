@@ -47,7 +47,6 @@ class UploadAvatarHandler(BaseHandler):
             'current': self.current_user,
         }
         data = self.request.files.get('avatar','')
-        # print(data)
         if data == '':
             return self.render('auth/Personal.html',**kw)
         result = account_lib.account_avatar_lib(self,data[0]['body'])

@@ -1,0 +1,64 @@
+{% extends 'ctf_index.html' %}
+{% block body %}
+    {% for category,message in get_flashed_messages(with_categories=True) %}
+    {% if category == 'error' %}
+<script type="text/javascript">
+     swal({
+     'title': '错误',
+     'text': '{{ message }}',
+     'type': 'error',
+     'showCancelButton': false,
+     'showConfirmButton': false,
+     'timer': 2000
+ });
+</script >
+{% elif category == 'success' %}
+ <script type = "text/javascript" >
+ swal({
+     'title': '正确',
+     'text': '{{ message }}',
+     'type': 'success',
+     'showCancelButton': false,
+     'showConfirmButton': false,
+     'timer': 2000,
+ })
+</script>
+ {% end %}
+ {% end %}
+
+    <div class="container" style="margin-top:190px;">
+        <center>
+        <span id="titleid">{{ title.id }}</span>
+        {{ title.name }}
+        {{ title.source }}
+        <a target="_blank" href={{ demo }}>题目链接</a>
+        <form action="" method="post">
+            {% module xsrf_form_html() %}
+
+            <textarea type="text" name="answer" cols="50"></textarea>
+{#            <input type="text" name="answer">#}
+
+            <input type="submit" value="提交" id="submit_push">
+
+        </form>
+        </center>
+    </div>
+    <table class="table table-striped">
+  <thead>
+  <tr>
+  <td style="text-align: center"><b>Solver</b></td>
+  <td style="text-align: center"><b>Time</b></td>
+
+
+    </tr>
+  </thead>
+    <tbody>
+{% for s in solver %}
+  <tr>
+    <td style="text-align: center">{{ s.name }}</td>
+    <td style="text-align: center">{{ time.time }}</td>
+  </tr>
+{% end %}
+  </tbody>
+</table>
+{% end %}

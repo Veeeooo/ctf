@@ -13,6 +13,7 @@ from libs.db.dbsession import dbSession
 from models.account.auth_user import User
 from models.article.article_model import *
 from models.permission.permission_models import *
+from models.flag.ctf_flag import *
 
 
 define('port',default=8000,help='run port',type=int)

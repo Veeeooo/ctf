@@ -1,0 +1,74 @@
+{% extends '../base/index.html' %}
+{% block head %}
+<link href="/static/common/sweetalert/sweetalert.css" rel="stylesheet">
+<script src="/static/common/sweetalert/sweetalert.min.js"></script>
+{#<link rel="stylesheet" href="/static/common/css/permission.css">#}
+{% end %}
+{% block body %}
+    <div class="page-heading">
+            <h3>
+                权限管理 <small>Subtext for header</small>
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Extra Pages</a>
+                </li>
+                <li class="active">权限管理 </li>
+            </ul>
+        </div>
+    <header class="panel-heading" id="head1">
+
+                        <div id="box1">
+                            <form class= "login" method="post" action="/permission/user_add_role">
+                                {% module xsrf_form_html() %}
+                                <p>用户ID <select name="userid" id="userid">
+                                    {% for user in users %}
+                                        <option value={{ user.id }}>{{ user.name }}</option>
+                                    {% end %}
+                                </select>
+                                    角色ID <select name="roleid" id="roleid">
+                                        {% for role in roles %}
+                                            <option value={{ role.id }}>{{ role.name }}</option>
+                                        {% end %}
+                                    </select>
+                                    <input type="submit" id="submit1" onclick="()"> <font id="tips" style="color:red;"></font> </p>
+                            </form>
+                        </div>
+
+                    </header>
+<div class="row box1" id="box3">
+            <div class="col-sm-12">
+                <section class="panel" >
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>用户名</th>
+                                <th>角色</th>
+                                <th>编辑</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in users %}
+                                    <tr>
+                                        <td>{{user.id}}</td>
+                                        <td>{{user.name}}</td>
+                                        <td>
+                                            {% for role in user.roles %}
+                                                {{ role.name }}
+                                            {% end %}
+                                        </td>
+                                    </tr>
+                                {% end %}
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+          </div>
+{% end %}
+{% block end %}{% end %}

@@ -63,6 +63,6 @@ class LogoutHandler(BaseHandler):
     def get(self, *args, **kwargs):
         print self.session.get('user_name')
         self.clear_cookie("PYCKET_ID")
-        self.redirect('/')
+        self.redirect('/user_login')
 
 

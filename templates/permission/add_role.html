@@ -1,0 +1,65 @@
+{% extends '../base/index.html' %}
+{% block head %}
+<link href="/static/common/sweetalert/sweetalert.css" rel="stylesheet">
+<script src="/static/common/sweetalert/sweetalert.min.js"></script>
+{#<link rel="stylesheet" href="/static/common/css/permission.css">#}
+{% end %}
+{% block body %}
+    <div class="page-heading">
+            <h3>
+                权限管理 <small>Subtext for header</small>
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Extra Pages</a>
+                </li>
+                <li class="active">权限管理 </li>
+            </ul>
+        </div>
+    <div class="row box1" id="box3">
+            <div class="col-sm-12">
+                <section class="panel" >
+                    <header class="panel-heading" >
+
+                        <form class= "login" method="post" action="/permission/add_role" id="test1">
+                            {% module xsrf_form_html() %}
+                                <p>角色名<input type="text" name="name" id="name">
+                                <input type="submit" id="submit1"></p>
+                        </form>
+
+
+
+                    </header>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>角色名</th>
+                                <th>编辑</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for role in roles %}
+                                    <tr>
+                                        <td>{{role.id}}</td>
+                                        <td>{{role.name}}</td>
+
+                                        <td>
+
+                                            <a href="/permission/del_role?id={{ role.id }}" >删除</a>
+
+                                        </td>
+                                    </tr>
+                                {% end %}
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+          </div>
+{% end %}
+{% block end %}{% end %}

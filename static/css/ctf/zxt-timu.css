@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+.timu
+{   
+	padding:5px;
+}
+.category-header
+{
+	text-align:center;
+}
+.trigger
+{
+   color:#FFF;
+   background-size:auto auto;
+   border:none;
+   border-top-width:medium;
+   border-left-width:medium;
+   border-right-width:medium;
+   border-bottom-width:medium;
+   
+}
+.challenge-button
+{
+    width:100%;
+	height:100%;	
+}
+
+.theme-background
+{
+	background:#484848;
+}
+
+.hide-text {
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+}
+mycontainer
+{
+	margin-top:35px;
+	margin-bottom:35px;
+}

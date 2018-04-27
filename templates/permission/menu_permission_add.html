@@ -1,0 +1,67 @@
+{% extends '../base/index.html' %}
+{% block head %}
+<link href="/static/common/sweetalert/sweetalert.css" rel="stylesheet">
+<script src="/static/common/sweetalert/sweetalert.min.js"></script>
+{#<link rel="stylesheet" href="/static/common/css/permission.css">#}
+{% end %}
+{% block body %}
+    <div class="page-heading">
+            <h3>
+                权限管理 <small>Subtext for header</small>
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Extra Pages</a>
+                </li>
+                <li class="active">权限管理 </li>
+            </ul>
+        </div>
+    <div class="row box1" id="box5">
+            <div class="col-sm-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                       <form class= "login" method="post" action="/permission/add_menu_permission">
+                           {% module xsrf_form_html() %}
+                           <p>菜单名<input type="text" name="name">
+                                权限ID <select name="permissionid" id="permissionid">
+                                   {% for pid in permissions %}
+                                    <option value={{ pid.id }}>{{ pid.strcode }}</option>
+                                   {% end %}
+                               </select>
+                                <input type="submit"></p>
+                       </form>
+                    </header>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>菜单名</th>
+                                <th>权限码</th>
+                                <th>编辑</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for menu in menus %}
+                                    <tr>
+                                        <td>{{menu.id}}</td>
+                                        <td>{{menu.name}}</td>
+                                        <td>{% if menu.permission %}{{menu.permission.strcode}}{%end%}</td>
+                                        <td>
+
+                                            <a href="/permission/del_menu?id={{ menu.id }}" >删除</a>
+
+                                        </td>
+                                    </tr>
+                                {% end %}
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+          </div>
+{% end %}
+{% block end %}{% end %}

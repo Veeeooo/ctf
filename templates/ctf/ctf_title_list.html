@@ -1,0 +1,24 @@
+{% extends 'ctf_index.html' %}
+{% block body %}
+    <div class="container" style="background: whitesmoke; margin-top: 150px;">
+        <h1>题目列表</h1>
+        <table class="table table-striped">
+  <thead>
+  <tr>
+  <td style="text-align: center"><b>Title</b></td>
+  <td style="text-align: center"><b>编辑</b></td>
+
+
+    </tr>
+  </thead>
+    <tbody>
+    {% for title in titles %}
+  <tr>
+    <td style="text-align: center"><a href="/ctf/challenge?id={{ title.id }}">{{ title.name }}</a></td>
+    <td style="text-align: center"><a href="/ctf/manage?id={{ title.id }}">编辑</a> <a href="/ctf/delete?id={{ title.id }}">删除</a></td>
+  </tr>
+    {% end %}
+  </tbody>
+</table>
+    </div>
+{% end %}

@@ -9,9 +9,10 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import (create_engine, Column, Integer, String,
                         Text, Boolean, Date, DateTime, ForeignKey)
-
+from models.permission.permission_models import UserToRole
 from libs.db.dbsession import Base
 from libs.db.dbsession import dbSession
+from models.flag.ctf_flag import UserToChallenge
 
 
 class User(Base):
@@ -42,7 +43,8 @@ class User(Base):
     num = Column(String(50), unique=True)
     qq = Column(String(50))
 
-    # roles = relationship("Role", secondary=UserToRole.__table__)  ###多对多关系
+    challenge = relationship("Challenge", secondary=UserToChallenge.__table__)
+    roles = relationship("Role", secondary=UserToRole.__table__)  ###多对多关系
     article = relationship("Article",backref='user')
     comment = relationship("Comment",backref='user')
     secondcomment = relationship("SecondComment",backref='user')

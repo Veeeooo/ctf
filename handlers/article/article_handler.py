@@ -6,11 +6,11 @@ from libs.article import article_lib
 import json
 
 class ArticleHandler(BaseHandler):
-    def get(self, *args, **kwargs):
+    def get(self):
         id = self.get_argument('id','')
         article = article_lib.article_info_libs(self,id)
         kw = {
-            'article':article
+            'article':article,
         }
         self.render('article/articles_detail.html',**kw)
 
@@ -110,7 +110,7 @@ class DeleteCategoryHandler(BaseHandler):
 
         kw = {
             'categorys': categorys,
-            'tags': tags
+            'tags': tags,
         }
         self.render('article/add_category_tag.html', **kw)
 
@@ -119,7 +119,6 @@ class SearchHandler(BaseHandler):
     def get(self, *args, **kwargs):
         tag_id = self.get_argument('tag_id','')
         category_id = self.get_argument('category_id','')
-
         articles, tags, categorys = article_lib.article_search_lib(self,tag_id,category_id)
         kw = {
             'articles': articles,

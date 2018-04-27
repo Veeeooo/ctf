@@ -116,4 +116,49 @@ def article_search_lib(self,tag_id,category_id):
     return articles, categorys, tags
 
 
+def file_list_lib(self,page):
+    files = Article.all()
+    files_page = get_page_list2(int(page), files, 5)  ##当前页数  文件总个数   页面显示文件个数
+    # files_del = self.current_user.users_files_del
+    return files_page['files'], files_page
 
+def get_page_list2(current_page, content, MAX_PAGE):
+    start = (current_page - 1) * MAX_PAGE
+    end = start + MAX_PAGE
+
+    split_content = content[start:end]
+
+    total = len(content)
+
+    count = total / MAX_PAGE  # 105/10  10
+    if total % MAX_PAGE != 0:
+        count += 1
+
+    pre_page = current_page - 1
+    next_page = current_page + 1
+
+    if pre_page == 0:
+        pre_page = 1
+    if next_page > count:
+        next_page = count
+
+    if count < 5:
+        pages = [p for p in xrange(1, count + 1)]  # [1,2,3,4]  [1,2,3]
+
+    elif current_page <= 3:
+        pages = [p for p in xrange(1, 6)]  # [1,2,3,4,5]
+
+    elif current_page >= count - 2:
+        pages = [p for p in xrange(count - 4, count + 1)]  # 12  [8,9,10,11,12]
+
+    else:
+        pages = [p for p in xrange(current_page - 2, current_page + 3)]
+
+    return {
+        'files': split_content,
+        'count': count,
+        'pre_page': pre_page,
+        'next_page': next_page,
+        'current_page': current_page,
+        'pages': pages,
+    }

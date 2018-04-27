@@ -97,7 +97,7 @@
                 <li><a href="/ctf/index" style="background: none; color: grey;">CTF入口</a></li>
                 <li><a href="/article/exploit">渗透笔记</a></li>
                 <li><a href="/article/network">计算机网络笔记</a></li>
-
+{#                {% if menu_permission("filemanage","menu") %}#}
                 <li class="has-sub">
                     <a href="javascript:void(0);"><span>文章管理</span><i class="fa fa-caret-right fa-fw pull-right"></i></a>
                     <ul class="sub-menu">
@@ -106,6 +106,20 @@
                         <li><a href="/article/add_category_tag"><i class="fa fa-circle-o fa-fw"></i>&nbsp;添加分类|标签</a></li>
                     </ul>
                 </li>
+{#                {% end %}#}
+                {% if menu_permission("permissionmanage","menu") %}
+                <li class="has-sub">
+                    <a href="javascript:void(0);"><span>权限管理</span><i class="fa fa-caret-right fa-fw pull-right"></i></a>
+                    <ul class="sub-menu">
+                        <li><a href="/permission/add_permission"><i class="fa fa-circle-o fa-fw"></i>&nbsp;添加权限</a></li>
+                        <li><a href="/permission/role_add_permission"><i class="fa fa-circle-o fa-fw"></i>&nbsp;添加角色权限</a></li>
+                        <li><a href="/permission/user_add_role"><i class="fa fa-circle-o fa-fw"></i>&nbsp;添加用户角色</a></li>
+                        <li><a href="/permission/add_role"><i class="fa fa-circle-o fa-fw"></i>&nbsp;添加角色</a></li>
+                        <li><a href="/permission/add_menu_permission"><i class="fa fa-circle-o fa-fw"></i>&nbsp;添加菜单权限</a></li>
+                        <li><a href="/permission/permission_list"><i class="fa fa-circle-o fa-fw"></i>&nbsp;权限详情</a></li>
+                    </ul>
+                </li>
+                {% end %}
             </ul>
         </div>
         {% block body %}

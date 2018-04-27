@@ -105,6 +105,9 @@ class Permission(Base):
     def by_name(cls, name):
         return dbSession.query(cls).filter_by(name=name).first()
 
+    @classmethod
+    def by_strcode(cls,strcode):
+        return dbSession.query(cls).filter_by(strcode=strcode).first()
 
 
 class UserToRole(Base):
